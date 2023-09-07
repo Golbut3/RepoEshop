@@ -6,15 +6,17 @@ import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Transient;
 @Entity
 @DiscriminatorValue("Fournisseur")
 public class Fournisseur extends Personne {
 	@Column
 	private String responsable;
-	@Transient
+	@OneToMany(mappedBy = "fournisseur")
 	private List<Produit> produits = new ArrayList<>();
-	@Transient
+	@ManyToMany(mappedBy = "fournisseurs")
 	private List<Adresse> adresses = new ArrayList<>();
 
 	

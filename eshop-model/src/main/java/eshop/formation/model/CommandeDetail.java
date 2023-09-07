@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.persistence.Version;
@@ -20,9 +22,11 @@ public class CommandeDetail {
 	private int quantite;
 	@Column
 	private Double prix;
-	@Transient
+	@ManyToOne
+	@JoinColumn(name = "commande")
 	private Commande commande;
-	@Transient
+	@ManyToOne
+	@JoinColumn(name = "produit")
 	private Produit produit;
 
 	

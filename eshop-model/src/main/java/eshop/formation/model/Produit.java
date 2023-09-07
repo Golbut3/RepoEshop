@@ -8,6 +8,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.persistence.Version;
@@ -31,13 +35,14 @@ public class Produit {
 	private String modele;
 	@Column
 	private int stock;
-	@Transient
+	@ManyToOne
+	@JoinColumn(name="fournisseur")
 	private Fournisseur fournisseur;
-	@Transient
+	@OneToMany(mappedBy = "produit")
 	private List<CommandeDetail> details = new ArrayList<>();
-	@Transient
+	@OneToMany(mappedBy = "produit")
 	private List<Commentaire> commentaires = new ArrayList<>();
-	@Transient
+	@ManyToMany(mappedBy = "produitsReparables")
 	private List<Reparateur> reparateurs = new ArrayList<>();
 	
 	

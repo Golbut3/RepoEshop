@@ -11,6 +11,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.persistence.Version;
@@ -29,9 +32,10 @@ public class Commande {
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('ENCOURS', 'TERMINEE', 'ETAT3', 'ETAT4', 'ETAT5', 'ETAT6')")
 	private EtatCommande etat;
-	@Transient
+	@ManyToOne
+	@JoinColumn(name = "client")
 	private Client client;
-	@Transient
+	@OneToMany(mappedBy = "commande")
 	private List<CommandeDetail> details = new ArrayList<>();
 
 	

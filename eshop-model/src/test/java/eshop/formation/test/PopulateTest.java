@@ -8,4 +8,5 @@ public class PopulateTest {
 	public void populate() {
 		
 	}
+	public void run(String ...args) {}
 }

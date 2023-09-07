@@ -2,11 +2,15 @@ package eshop.formation.model;
 
 import java.util.Date;
 
+import org.hibernate.annotations.ManyToAny;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.persistence.Version;
@@ -24,9 +28,11 @@ public class Commentaire {
 	private int note = 0;
 	@Column
 	private String commentaire;
-	@Transient
+	@ManyToOne
+	@JoinColumn(name="produit")
 	private Produit produit;
-	@Transient
+	@ManyToOne
+	@JoinColumn(name="client")
 	private Client client;
 
 	

@@ -8,6 +8,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.persistence.Version;
@@ -25,7 +28,8 @@ public class Reparateur {
 	private String telephone;
 	@Column
 	private String description;
-	@Transient
+	@ManyToMany
+	@JoinTable(name="reparateur_produit",joinColumns = @JoinColumn(name="reparateur"),inverseJoinColumns = @JoinColumn(name="produit"))
 	private List<Produit> produitsReparables = new ArrayList<>();
 	
 	

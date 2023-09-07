@@ -1,9 +1,31 @@
 package eshop.formation.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+@Entity
+@Table(name = "personne")
+@DiscriminatorColumn(name = "type_personne",columnDefinition = "ENUM('Client','Fournisseur')")
 public abstract class Personne {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Long id;
+	@Column
 	protected String nom;
-	protected String adresse;
+	@Column
+	protected String mail;
+	
+	public Personne() {}
+
+	public Personne(Long id, String nom, String mail) {
+		this.id = id;
+		this.nom = nom;
+		this.mail = mail;
+	}
 
 	public Long getId() {
 		return id;
@@ -21,11 +43,13 @@ public abstract class Personne {
 		this.nom = nom;
 	}
 
-	public String getAdresse() {
-		return adresse;
+	public String getMail() {
+		return mail;
 	}
 
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
+
+
 }

@@ -3,10 +3,27 @@ package eshop.formation.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Transient;
+@Entity
+@DiscriminatorValue("Client")
 public class Client extends Personne {
+	@Column
 	private String prenom;
+	@Transient
 	private List<Commande> commandes = new ArrayList<>();
+	@Transient
 	private List<Adresse> adresses;
+	
+	public Client() {}
+
+	public Client(Long id, String nom, String mail,String prenom) {
+		super(id,nom,mail);
+		this.prenom = prenom;
+
+	}
 
 	public String getPrenom() {
 		return prenom;

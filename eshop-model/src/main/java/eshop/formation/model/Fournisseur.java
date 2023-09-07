@@ -3,10 +3,29 @@ package eshop.formation.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Transient;
+@Entity
+@DiscriminatorValue("Fournisseur")
 public class Fournisseur extends Personne {
+	@Column
 	private String responsable;
+	@Transient
 	private List<Produit> produits = new ArrayList<>();
+	@Transient
 	private List<Adresse> adresses = new ArrayList<>();
+
+	
+	
+	public Fournisseur() {
+	}
+
+	public Fournisseur(Long id, String nom, String mail, String responsable) {
+		super(id, nom, mail);
+		this.responsable=responsable;
+		}
 
 	public String getResponsable() {
 		return responsable;

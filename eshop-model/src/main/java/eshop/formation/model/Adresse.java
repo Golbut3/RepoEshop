@@ -1,20 +1,55 @@
 package eshop.formation.model;
-//Comentaire
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+@Entity
+@Table(name = "adresse")
 public class Adresse {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	@Column
 	private String rue;
-
+	@Column
 	private String ville;
-
+	@Column
 	private String codePostal;
-
+	@Column
 	private Client client;
-
+	@Transient
 	private List<Fournisseur> fournisseurs = new ArrayList<>();
+	
+	public Adresse() {
+		
+	}
+
+	
+	
+	public Adresse(String rue, String ville, String codePostal, Client client) {
+		this.rue = rue;
+		this.ville = ville;
+		this.codePostal = codePostal;
+		this.client = client;
+	}
+
+
+
+	public Adresse(Long id, String rue, String ville, String codePostal, Client client) {
+		this.id = id;
+		this.rue = rue;
+		this.ville = ville;
+		this.codePostal = codePostal;
+		this.client = client;
+
+	}
+	
 
 	public Long getId() {
 		return id;

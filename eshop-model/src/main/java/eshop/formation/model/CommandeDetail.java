@@ -7,12 +7,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
+import jakarta.persistence.Version;
 @Entity
 @Table(name="detail_commande")
 public class CommandeDetail {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Version
+	private int version;
 	@Column
 	private int quantite;
 	@Column
@@ -21,6 +24,18 @@ public class CommandeDetail {
 	private Commande commande;
 	@Transient
 	private Produit produit;
+
+	
+	
+	public CommandeDetail() {
+	}
+
+	public CommandeDetail(int quantite, Double prix, Commande commande, Produit produit) {
+		this.quantite = quantite;
+		this.prix = prix;
+		this.commande = commande;
+		this.produit = produit;
+	}
 
 	public Long getId() {
 		return id;
@@ -62,9 +77,6 @@ public class CommandeDetail {
 		this.produit = produit;
 	}
 
-	public CommandeDetail() {
-		// Rien de sp�cial ici
-	}
 
 	public CommandeDetail(Double prix, int quantite, Produit produit, Commande commande) {
 		this.prix = prix;

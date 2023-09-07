@@ -22,6 +22,12 @@ public class Fournisseur extends Personne {
 	public Fournisseur() {
 	}
 
+	public Fournisseur(String nom, String mail, String responsable) {
+		super(nom, mail);
+		this.responsable=responsable;
+		}
+
+	
 	public Fournisseur(Long id, String nom, String mail, String responsable) {
 		super(id, nom, mail);
 		this.responsable=responsable;

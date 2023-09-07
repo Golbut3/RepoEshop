@@ -10,13 +10,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
+import jakarta.persistence.Version;
 @Entity
 @Table(name = "produit")
-
 public class Produit {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Version
+	private int version;
 	@Column
 	private String libelle;
 	@Column
@@ -37,6 +39,22 @@ public class Produit {
 	private List<Commentaire> commentaires = new ArrayList<>();
 	@Transient
 	private List<Reparateur> reparateurs = new ArrayList<>();
+	
+	
+
+	public Produit() {
+	}
+
+	public Produit(String libelle, Double prixAchat, Double prixVente, String reference, String modele,
+			int stock, Fournisseur fournisseur) {
+		this.libelle = libelle;
+		this.prixAchat = prixAchat;
+		this.prixVente = prixVente;
+		this.reference = reference;
+		this.modele = modele;
+		this.stock = stock;
+		this.fournisseur = fournisseur;
+	}
 
 	public Long getId() {
 		return id;
@@ -126,9 +144,6 @@ public class Produit {
 		this.reparateurs = reparateurs;
 	}
 
-	public Produit() { // IMPORTANT pour JPA
-
-	}
 
 	public Produit(String libelle) {
 		this.libelle = libelle;

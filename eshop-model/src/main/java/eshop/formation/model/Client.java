@@ -19,6 +19,12 @@ public class Client extends Personne {
 	
 	public Client() {}
 
+	public Client(String nom, String mail,String prenom) {
+		super(nom,mail);
+		this.prenom = prenom;
+
+	}
+	
 	public Client(Long id, String nom, String mail,String prenom) {
 		super(id,nom,mail);
 		this.prenom = prenom;

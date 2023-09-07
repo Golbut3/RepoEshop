@@ -13,12 +13,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
+import jakarta.persistence.Version;
 @Entity
 @Table(name="commande")
 public class Commande {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Version
+	private int version;
 	@Column
 	private Date date;
 	@Column
@@ -30,6 +33,18 @@ public class Commande {
 	private Client client;
 	@Transient
 	private List<CommandeDetail> details = new ArrayList<>();
+
+	
+	
+	public Commande() {
+	}
+
+	public Commande(Date date, Double prixTotal, EtatCommande etat, Client client) {
+		this.date = date;
+		this.prixTotal = prixTotal;
+		this.etat = etat;
+		this.client = client;
+	}
 
 	public Long getId() {
 		return id;

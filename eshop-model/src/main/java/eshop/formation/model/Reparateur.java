@@ -10,21 +10,34 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
+import jakarta.persistence.Version;
 @Entity
 @Table(name = "reparateur")
-
 public class Reparateur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column
 	private String nom;
+	@Version
+	private int version;
 	@Column
 	private String telephone;
 	@Column
 	private String description;
 	@Transient
 	private List<Produit> produitsReparables = new ArrayList<>();
+	
+	
+
+	public Reparateur() {
+	}
+
+	public Reparateur(String nom,String telephone, String description) {
+		this.nom = nom;
+		this.telephone = telephone;
+		this.description = description;
+	}
 
 	public Long getId() {
 		return id;

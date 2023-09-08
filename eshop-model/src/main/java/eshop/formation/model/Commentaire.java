@@ -1,8 +1,7 @@
 package eshop.formation.model;
 
+import java.time.LocalDate;
 import java.util.Date;
-
-import org.hibernate.annotations.ManyToAny;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,7 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import jakarta.persistence.Version;
 @Entity
 @Table(name="commentaire")
@@ -23,7 +21,7 @@ public class Commentaire {
 	@Version
 	private int version;
 	@Column
-	private Date date = new Date();
+	private LocalDate date;
 	@Column
 	private int note = 0;
 	@Column
@@ -40,7 +38,7 @@ public class Commentaire {
 	public Commentaire() {
 	}
 
-	public Commentaire(Date date, int note, String commentaire, Produit produit, Client client) {
+	public Commentaire(LocalDate date, int note, String commentaire, Produit produit, Client client) {
 		this.date = date;
 		this.note = note;
 		this.commentaire = commentaire;
@@ -56,11 +54,11 @@ public class Commentaire {
 		this.id = id;
 	}
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 

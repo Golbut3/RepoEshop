@@ -6,6 +6,8 @@ import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Transient;
@@ -16,7 +18,9 @@ public class Fournisseur extends Personne {
 	private String responsable;
 	@OneToMany(mappedBy = "fournisseur")
 	private List<Produit> produits = new ArrayList<>();
-	@ManyToMany(mappedBy = "fournisseurs")
+	@ManyToMany
+	@JoinTable(name="adresse_fournisseur",joinColumns = @JoinColumn(name="fournisseur"),inverseJoinColumns = @JoinColumn(name="adresse"))
+
 	private List<Adresse> adresses = new ArrayList<>();
 
 	

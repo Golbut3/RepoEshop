@@ -1,5 +1,6 @@
 package eshop.formation.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +27,7 @@ public class Commande {
 	@Version
 	private int version;
 	@Column
-	private Date date;
+	private LocalDate date;
 	@Column
 	private Double prixTotal;
 	@Enumerated(EnumType.STRING)
@@ -43,7 +44,7 @@ public class Commande {
 	public Commande() {
 	}
 
-	public Commande(Date date, Double prixTotal, EtatCommande etat, Client client) {
+	public Commande(LocalDate date, Double prixTotal, EtatCommande etat, Client client) {
 		this.date = date;
 		this.prixTotal = prixTotal;
 		this.etat = etat;
@@ -58,11 +59,11 @@ public class Commande {
 		this.id = id;
 	}
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 

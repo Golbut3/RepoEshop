@@ -21,7 +21,7 @@ import jakarta.persistence.EntityManagerFactory;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan("eshop.formation.model")
+@ComponentScan({"eshop.formation.model","eshop.formation.api"})
 @PropertySource("classpath:infos.properties")
 @EnableJpaRepositories("eshop.formation.dao")
 public class AppConfig {
